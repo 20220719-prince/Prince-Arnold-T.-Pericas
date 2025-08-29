@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            background: white;
+            color: #333;
+        }
+
+        nav {
+            background: white;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #3498db;
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 100px auto 0;
+            padding: 2rem;
+        }
+
+        section {
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: #f8f9fa;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .hero {
+            text-align: center;
+            background: linear-gradient(135deg, #f6f6f6 0%, #000000 100%);
+            color: white;
+            padding: 3rem;
+        }
+
+        .profile-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            border: 4px solid white;
+            overflow: hidden;
+        }
+
+        .profile-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .skill-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .skill-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .skill-image {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1rem;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .skill-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .skill-item h3 {
+            color: #3498db;
+            margin-bottom: 0.5rem;
+        }
+
+        .education-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .education-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 10px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .education-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .education-content {
+            flex: 1;
+        }
+
+        .education-item h3 {
+            color: #27ae60;
+            margin-bottom: 0.5rem;
+        }
+
+        .hobbies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .hobby-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .hobby-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .hobby-image {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 1rem;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .hobby-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hobby-item h3 {
+            color: #e74c3c;
+            margin-bottom: 0.5rem;
+        }
+
+        footer {
+            background: #2c3e50;
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .contact-item {
+            padding: 1.5rem;
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+        }
+
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 1rem;
+            border-radius: 50%;
+            overflow: hidden;
+            background: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .contact-icon img {
+            width: 30px;
+            height: 30px;
+        }
+
+        .contact-item h3 {
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+        }
+
+        .head {
+            margin-top: 2rem;
+            border-top: 1px solid #34495e;
+            padding-top: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 1rem;
+            }
+            
+            main {
+                margin-top: 80px;
+                padding: 1rem;
+            }
+            
+            section {
+                padding: 1.5rem;
+            }
+            
+            .hero {
+                padding: 2rem 1rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .profile-image {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .education-item {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .education-image {
+                width: 100px;
+                height: 100px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .nav-links {
+                gap: 0.5rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .skills-grid,
+            .hobbies-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-info {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <div class="logo">My Portfolio </div>
+            <ul class="nav-links">
+                <li> <a href="#home">Home</a></li>
+                <li> <a href="#about">About</a></li>
+                <li> <a href="#education">Education</a></li>
+                <li> <a href="#others">Others</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="profile-image">
+                <img src="prince.jpg" alt="princepuge" />
+            </div>
+            <h1>Prince Arnold T. Pericas</h1>
+        </section>
+
+
+        <section id="about">
+            <h2>Summary</h2>
+            <p>I am a dedicated and passionate with a background in technology and creative problem-solving.</p>
+            <p>My approach combines technical excellence with creative thinking, allowing me to deliver exceptional results across various projects and challenges.</p>
+        </section>
+
+
+        <section>
+            <h2>Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-item">
+                    <div class="skill-image">
+                        <img src="web.jpg" alt="web" />
+                    </div>
+                    <h3>Web Development</h3>
+                    <p>HTML, CSS, JavaScript</p>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-image">
+                        <img src="ui.jpg" alt="UI" />
+                    </div>
+                    <h3>Design</h3>
+                    <p>UI/UX Design, Responsive Design</p>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-image">
+                        <img src="vscode.png" alt="desk" />
+                    </div>
+                    <h3>Tools</h3>
+                    <p>Git, VS Code, Photoshop</p>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-image">
+                        <img src="team.jpg" alt="team" />
+                    </div>
+                    <h3>Soft Skills</h3>
+                    <p>Team Collaboration, Problem Solving</p>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="education">
+            <h2>Education</h2>
+            <div class="education-item">
+                <div class="education-image">
+                    <img src="cstc.png" alt="CSTC Sariaya Quezon" />
+                </div>
+                <div class="education-content">
+                    <h3>CSTC Sariaya Quezon</h3>
+                    <p>College of Sciences Technology and Communications Inc.</p>
+                    <p>2022 - Present</p>
+                    <p>Gaining comprehensive knowledge in programming, networking, and information technology fundamentals. Developing practical skills through hands-on projects and collaborative learning.</p>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="others">
+            <h2>Hobbies & Interests</h2>
+            <div class="hobbies-grid">
+                <div class="hobby-item">
+                    <div class="hobby-image">
+                        <img src="game.jpg" alt="gaming" />
+                    </div>
+                    <h3>Gaming</h3>
+                    <p>Valorant, CODM, Dota 2, Roblox</p>
+                    <p>Competitive gaming and team strategy</p>
+                </div>
+                <div class="hobby-item">
+                    <div class="hobby-image">
+                        <img src="spotify.png" alt="music" />
+                    </div>
+                    <h3>Music</h3>
+                    <p>Listening to various genres</p>
+                    <p>From RnB/Soul to Rock</p>
+                </div>
+                <div class="hobby-item">
+                    <div class="hobby-image">
+                        <img src="guitar.png" alt="guitar" />
+                    </div>
+                    <h3>Playing Guitar</h3>
+                    <p>Acoustic guitar</p>
+                    <p>Rhythm playing</p>
+                </div>
+                <div class="hobby-item">
+                    <div class="hobby-image">
+                        <img src="microphone.gif" alt="singing" />
+                    </div>
+                    <h3>Singing</h3>
+                    <p>Vocal performances</p>
+                    <p>Cover songs and original compositions</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <h2>Contact Information</h2>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <img src="contact.png" alt="contact" />
+                    </div>
+                    <h3>Phone</h3>
+                    <p>+63 993 687 1340</p>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <img src="email.jpg" alt="email" />
+                    </div>
+                    <h3>Email</h3>
+                    <p>20220719@cstc.edu.ph</p>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <img src="facebook.png" alt="Facebook" />
+                    </div>
+                    <h3>Facebook</h3>
+                    <p>facebook.com/princearnold30</p>
+                </div>
+            </div>
+            <div class="head">
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-links a');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= (sectionTop - 100)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').substring(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+        const images = document.querySelectorAll('img');
+        images.forEach(img => {
+            img.addEventListener('error', function() {
+                this.style.display = 'none';
+                this.parentElement.style.background = '#e9ecef';
+                this.parentElement.style.display = 'flex';
+                this.parentElement.style.alignItems = 'center';
+                this.parentElement.style.justifyContent = 'center';
+                this.parentElement.innerHTML = '<span style="color: #6c757d; font-size: 0.9rem;">Image not available</span>';
+            });
+        });
+    </script>
+</body>
+</html>
+
